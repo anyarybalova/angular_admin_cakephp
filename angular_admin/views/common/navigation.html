@@ -1,0 +1,83 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav" id="side-menu">
+            <li class="nav-header">
+
+                <div class="dropdown profile-element" dropdown>
+                    <a class="dropdown-toggle" dropdown-toggle href>
+                            <span class="clear">
+                                <span class="block m-t-xs">
+                                    <strong class="font-bold">{{main.userName}}</strong>
+                             </span>
+                                <span class="text-muted text-xs block">Menu<b class="caret"></b></span>
+                            </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a href="">Logout</a></li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    IN+
+                </div>
+
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="index.main"><i class="fa fa-laptop"></i> <span class="nav-label">Home</span> </a>
+            </li>
+            
+            <li ng-class="{active: $state.includes('clients')}">
+                <a href=""><i class="fa fa-male"></i> <span class="nav-label">{{ 'Clients' }}</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level" ng-class="{in: $state.includes('clients')}">
+                    <li ui-sref-active="active"><a ui-sref="clients.list">List</a></li>
+                    <li ui-sref-active="active"><a ui-sref="clients.add_client">New client</a></li>
+                </ul>
+            </li>
+            
+            <li ng-class="{active: $state.includes('exercises')}">
+                <a href=""><i class="fa fa-bicycle"></i> <span class="nav-label">{{ 'Exercises' }}</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level" ng-class="{in: $state.includes('exercises')}">
+                    <li ui-sref-active="active"><a ui-sref="exercises.list">List</a></li>
+                    <li ui-sref-active="active"><a ui-sref="exercises.new">New Exercise</a></li>
+                </ul>
+            </li>
+
+            <li ng-class="{active: $state.includes('trainnings')}">
+                <a href=""><i class="fa fa-list-alt"></i> <span class="nav-label">{{ 'Trainning Plans' }}</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level" ng-class="{in: $state.includes('trainnings')}">
+                    <li ui-sref-active="active"><a ui-sref="trainnings.list">List</a></li>
+                    <li ui-sref-active="active"><a ui-sref="trainnings.new">New Trainning Plan</a></li>
+                    <li ui-sref-active="active"><a ui-sref="trainnings.new_workout">New Workout Session</a></li>
+                </ul>
+            </li>
+
+             <li ng-class="{active: $state.includes('sponsors')}">
+                <a href=""><i class="fa fa-group"></i> <span class="nav-label">{{ 'Sponsors' }}</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level" ng-class="{in: $state.includes('sponsors')}">
+                    <li ui-sref-active="active"><a ui-sref="sponsors.list">List</a></li>
+                    <li ui-sref-active="active"><a ui-sref="sponsors.new">New Sponsor</a></li>
+                </ul>
+            </li>
+           
+             <li ng-class="{active: $state.includes('admin')}">
+                <a href=""><i class="fa fa-user"></i> <span class="nav-label">{{ 'Admin' }}</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level" ng-class="{in: $state.includes('admin')}">
+                    <li ui-sref-active="active"><a ui-sref="admin.users">Users</a></li>
+                    <li ui-sref-active="active"><a ui-sref="admin.roles">Roles</a></li>
+                </ul>
+            </li>
+            
+        </ul>
+
+    </div>
+</nav>

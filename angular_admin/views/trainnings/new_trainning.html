@@ -1,0 +1,144 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Add new trainning plan</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="index.main">Home</a>
+            </li>
+            <li>
+                <a ui-sref="exercises.list" >Trainning plans</a>
+            </li>
+            <li class="active">
+                <strong>Add</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+<div id="addTrainnig" class="row" ng-controller="TrainningCtrl">
+    <div class="col-lg-12 col-md-8 col-sm-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h2><strong>New Trainning</strong></h2>
+            </div>
+            <div class="ibox-content">
+                <form class="form-horizontal" id="addTrainning" ng-submit="submitAddTrainning()" >                       
+                    <div class="row">                   
+                        <div class="col-md-7">     
+                                <div class="row form-group-sm">
+                                    <label class="col-md-3 control-label"><span ng-class="{'text-black' : !form_errors.name, 'text-danger' : form_errors.name}">Name:</span></label>
+                              
+                                    <input class="col-md-8 form-controls" type="text" ng-model="Trainning.name" required>
+                                    
+                                </div>
+                            
+                        
+                            
+                                <div class="row form-group-sm">
+                                    <label class="col-md-3 control-label"><span ng-class="{'text-black' : !form_errors.description, 'text-danger' : form_errors.description}">Short Description:</span></label>
+                             
+                                    <textarea type="text" rows="2" ng-model="Trainning.description" class="form-controls col-md-8" required></textarea>
+                                </div>
+                               
+                                
+                                <div class="row form-group-sm">
+                                    <label class="col-md-3 control-label"><span ng-class="{'text-black' : !form_errors.description, 'text-danger' : form_errors.description}">Summary:</span></label>
+                             
+                                    <textarea type="text" rows="3" ng-model="Trainning.summary" class="form-controls col-md-8" required></textarea>
+                                </div>
+
+                                <div class="row form-group-sm">
+                                    <label class="col-md-3 control-label"><span ng-class="{'text-black' : !form_errors.description, 'text-danger' : form_errors.description}">Programm Length:</span></label>
+                                    
+                                    <input id="cost" type="text" ng-init="Trainning.length = 0" ng-model="Trainning.length" class="form-controls" >
+
+                                    <select class="form-controls" ng-init="period='Days'" ng-model="period">
+                                        <option value="Days" selected>Days</option>
+                                        <option value="Weeks">Weeks</option>
+                                        <option value="Month">Months</option>
+                                    </select>
+                                </div>
+                        </div> 
+                        <div class="col-md-5">
+                            <div class="mobile-photo col-md-9">
+                                
+
+                                <!--
+                                <div class="col-md-3">
+                                    <p class="text_explication"><small>Add the Photo that will be displayed in the mobile Workouts gallery. This picture will be optimized for mobile devices.</small></p>
+                                </div>
+                                -->
+
+                                <div class="col-md-4">
+                                    <img class="added_img" src="{{url_exercise_img}}default.jpg" alt="user" width="60px"/> 
+                                </div>
+
+                                <div class="col-md-2 info_btn">      
+                                    <button class="btn btn-warning btn-circle" type="button" data-toggle="tooltip" data-placement="top" title="Add the Photo that will be displayed in the mobile Workouts gallery. This picture will be optimized for mobile devices.">
+                                        <i class="fa fa-info"></i>
+                                    </button>
+                                </div>
+
+                                <div class="buttons col-md-5">
+                                    <span class="btn btn-success btn-sm fileUpload">
+                                        <i class="fa fa-plus-circle"></i>
+                                        <span> ADD FILE</span>
+                                        <input file type="file" class="upload" ng-model="files" >
+                                    </span>
+
+                                     <button class="btn btn-sm cancel-btn" ><i class="fa fa-times"></i> DELETE</button>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="buttons col-md-offset-4">
+                            <button class="btn btn-sm btn-info" type="submit">SAVE</button>
+                            <button class="btn btn-sm btn-default" >CANCEL</button>
+                            <button class="btn btn-sm btn-warning" >Assign to a Client</button>
+                        </div>
+                    </div>
+
+                    <div class="row table_workouts" >
+                        <div class="col-md-9 col-md-offset-1">
+                            <label class="col-md-3 control-label pull-left">Workout name: </label>
+                            <div class="col-lg-4 col-md-4 form-group-sm">
+                                <input type="text" ng-model="search.Workout.name" class="form-controls">
+                            </div>
+
+                            <a type="button" class="btn btn-sm pull-right btn-success" ><i class="fa fa-file-o"></i> New Workout Session</a>
+                            <table id="exercises" class="table table-hover table-bordered" ts-wrapper>
+                                <thead>
+                                    <tr>
+                                      <th ts-criteria="Trainning.name|lowercase" ts-default>Order</th>
+                                      <th ts-criteria="Trainning.length|lowercase">Name</th>
+                                      <th ts-criteria="Subscription_type.name|lowercase">Program length</th>
+                                      <th ts-criteria="Subscription_type.name|lowercase">Assigned of Exercises</th>
+                                      <th ts-criteria="Subscription_type.name|lowercase">Subscription Type</th>
+                                      <th class="text-center">Actions</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </form>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});
+</script>

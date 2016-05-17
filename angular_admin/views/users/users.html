@@ -1,0 +1,78 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Users list</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="index.main">Home</a>
+            </li>
+            <li class="active">
+                <strong>Users</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+<div class="col-lg-12">
+<div class="wrapper wrapper-content animated fadeInUp">
+
+<div class="ibox">
+<div class="ibox-title">
+    
+    <div class="ibox-tools">
+        <a ui-sref="admin.add_user" class="btn btn-primary btn-xs">Create new user</a>
+    </div>
+</div>
+<div class="ibox-content">
+
+
+<div class="project-list" ng-controller="UserCtrl" ng-init="getUserList()">
+
+    <div class="row m-b-sm m-t-sm">
+        <div class="col-md-1">
+            <button ng-click="refresh()" type="button" id="loading-example-btn" class="btn btn-white btn-sm"><i class="fa fa-refresh"></i> Refresh</button>
+        </div>
+        <div class="col-md-11">
+            <div class="input-group">
+                <input type="text" placeholder="Search" class="input-sm form-control" ng-model="search.User.$">
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-hover" ts-wrapper>
+        <thead>
+            <tr>
+              <th ts-criteria="User.first_name|lowercase" ts-default>login</th>
+              <th ts-criteria="User.last_name|lowercase">Role</th>
+              <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+         <tr ng-repeat="user in users | tablesort | filter:search" ts-repeat >
+            <td class="project-title">
+                <p >{{user.User.login}}</a>
+            </td>
+           
+            <td class="project-detail">
+                <p>{{user.Role.name}}</p>
+            </td>
+
+            <td class="project-actions">
+                <a ui-sref="admin.edit_user({user_id : user.User.id})"  class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
+                <a data-toggle="modal" href="#" data-target="#modal" class="btn btn-white btn-sm" ng-click="deleteUserModal( user.User.id, user.User.login)" ><i class="fa fa-remove"></i> Delete </a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>

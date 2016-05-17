@@ -1,0 +1,106 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Clients list</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="index.main">Home</a>
+            </li>
+            <li class="active">
+                <strong>Clients</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+<div class="col-lg-12">
+<div class="wrapper wrapper-content animated fadeInUp">
+
+<div class="ibox">
+<div class="ibox-title">
+    
+    <div class="ibox-tools">
+        <a ui-sref="clients.add_client" class="btn btn-primary btn-xs">Create new client</a>
+    </div>
+</div>
+<div class="ibox-content">
+
+
+<div class="project-list" ng-controller="ClientCtrl" ng-init="getClientList()">
+
+    <div class="row m-b-sm m-t-sm">
+        <div class="col-md-1">
+            <button ng-click="refresh()" type="button" id="loading-example-btn" class="btn btn-white btn-sm"><i class="fa fa-refresh"></i> Refresh</button>
+        </div>
+        <div class="col-md-11">
+            <div class="input-group">
+                <input type="text" placeholder="Search" class="input-sm form-control" ng-model="search.Client.$">
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-hover" ts-wrapper>
+        <thead>
+            <tr>
+              <th ts-criteria="Client.first_name|lowercase" ts-default>First name</th>
+              <th ts-criteria="Client.last_name|lowercase">Last name</th>
+              <th ts-criteria="Client.email|lowercase">Email</th>
+              <th ts-criteria="Client.phone|lowercase">Phone</th>
+              <th ts-criteria="Client.country|lowercase">Country</th>
+              <th ts-criteria="Client.city|lowercase">City</th>
+              <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+         <tr ng-repeat="client in clients | tablesort | filter:search | startFrom: paginationClient.page * paginationClient.perPage | limitTo: paginationClient.perPage" ts-repeat >
+            <td class="project-title">
+                <p >{{client.Client.first_name}}</a>
+            </td>
+           
+            <td class="project-detail">
+                <p>{{client.Client.last_name}}</p>
+            </td>
+
+            <td class="project-detail">
+                <p>{{client.Client.email}}</p>
+            
+            </td>
+            
+            <td class="project-detail">
+                <p>{{client.Client.phone}}</p>
+            </td>
+
+            <td class="project-detail">
+                <p>{{client.Client.country_id}}</p>
+            </td>
+
+            <td class="project-detail">
+                <p>{{client.Client.city}}</p>
+            </td>
+
+            <td class="project-actions">
+                <a ui-sref="clients.edit_client({client_id : client.Client.id})" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
+                <a data-toggle="modal" href="#" data-target="#modal" class="btn btn-white btn-sm" ng-click="deleteModal( client.Client.id, client.Client.first_name, client.Client.last_name)" ><i class="fa fa-remove"></i> Delete </a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <ul class="pagination">
+        <li><a href="" ng-click="paginationClient.prevPage()">&laquo;</a></li>
+          <li ng-repeat="n in [] | range: paginationClient.numPages" ng-class="{active: n == paginationClient.page}">
+          <a href="" ng-click="paginationClient.toPageId(n)">{{n + 1}}</a>
+          </li>
+          <li><a href="" ng-click="paginationClient.nextPage()">&raquo;</a></li>
+    </ul>
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,81 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Add new user</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="index.main">Home</a>
+            </li>
+            <li>
+                <a ui-sref="admin.users" >Users</a>
+            </li>
+            <li class="active">
+                <strong>Edit user</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+<div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h2><strong>User information</strong></h2>
+
+               
+            </div>
+            <div class="ibox-content">
+                <form class="form-horizontal" ng-controller="UserCtrl" ng-submit="submitAddUser()" ng-init="getProfileUser();getRolesList();" >
+
+                            <div class="form-group col-offset-2">
+                                <label class="col-sm-2 control-label">Login</label>
+                                <div class="col-lg-8 col-md-6 col-sm-6">
+                                    <span ng-show="form_errors.login" class="text-danger">{{form_errors['login'][0]}}</span>
+                                    <input type="text" ng-model="User.login" class="form-control" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Role</label>
+                                <div class="col-sm-8">
+                                    <span ng-show="form_errors.role_id" class="text-danger">{{form_errors['role_id'][0]}}</span>
+                                    <select class="form-control" ng-init="" ng-model="role_id" ng-options="role.name for role in roles" required >
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                
+                                <div class="col-sm-8">
+                                    <a href="#" class="btn btn-blank">Change password</a>
+                                </div>
+                            </div>
+                            <!--
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Password</label>
+                                <div class="col-sm-8">
+                                    <span ng-show="form_errors.password" class="text-danger">{{form_errors['password'][0]}}</span>
+                                    <input type="password" class="form-control" ng-model="User.password" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Confirm Password</label>
+                                <div class="col-sm-8">
+                                    <span ng-show="form_errors.pass_2" class="text-danger">{{form_errors['pass_2'][0]}}</span>
+                                    <input type="password" class="form-control" ng-model="pass_2" required >
+                                </div>
+                            </div>
+                            -->
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button class="btn btn-sm btn-white" >Cancel</button>
+                            <button class="btn btn-sm btn-primary" type="submit">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    </div>
+</div>
+</div>
+</div>

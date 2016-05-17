@@ -1,0 +1,168 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Add new exercise</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="index.main">Home</a>
+            </li>
+            <li>
+                <a ui-sref="exercises.list" >Exercises</a>
+            </li>
+            <li class="active">
+                <strong>Add</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+<div class="row" ng-controller="ExerciseCtrl">
+    <div class="col-lg-12 col-md-8 col-sm-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h2><strong>New Exercise</strong></h2>
+
+               
+            </div>
+            <div class="ibox-content">
+                <form class="form-horizontal" id="addExercise" ng-submit="submitAddExercise()" ng-init="getMuscleGroup();initForm();" >                       
+                    <div class="row">                   
+                        <div class="col-md-4">       
+                            <div class="col-md-12">
+                                <div class="row form-group-sm">
+                                    <label class="col-sm-5 col-md-5 control-label"><span ng-class="{'text-black' : !form_errors.name, 'text-danger' : form_errors.name}">Name:</span><span class="mandatory"> (*)</span></label>
+                              
+                                    <input class="col-sm-7 col-md-7 form-controls" type="text" ng-model="Exercise.name" required>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <div class="row form-group-sm">
+                                    <label class="col-sm-5 col-md-5 control-label"><span ng-class="{'text-black' : !form_errors.description, 'text-danger' : form_errors.description}">Description:</span><span class="mandatory"> (*)</span></label>
+                             
+                                    <textarea type="text" rows="6" ng-model="Exercise.description" class="form-controls col-md-7" required></textarea>
+                                </div>
+                            </div>      
+                            
+                        </div>   
+                         <div class="col-md-4">   
+                                
+                           
+                            <div class="col-md-12">
+                                <div class="row form-group-sm">
+                                    <label class="col-sm-6 col-md-6 control-label"><span ng-class="{'text-black' : !form_errors.objetive_type_id, 'text-danger' : form_errors.objetive_type_id}">Objetive Type: </span><span class="mandatory"> (*)</span></label>
+                            
+                                    <select class="form-controls" ng-init="getObjetiveTypes()" ng-model="selObjetiveType" ng-options="objetive.name for objetive in objetives">
+                                    <option value="">-- choose --</option>
+                                    </select>
+                                    
+                                </div>
+
+                                <div class="row form-group-sm">
+                                    <label class="col-md-11 col-md-offset-1 control-label">
+                                        <input class="col-md-1" type="checkbox" value="mobile_market"  ng-model="Exercise.availible_mobile_market" checked >
+                                        <span class="col-md-11 text-left">Availible for Mobile Market</span>
+                                    </label>
+                                </div>
+                            </div>    
+                            
+                            </div>
+
+                        </div>
+                                                  
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="col-md-12">
+                                <div class="panel panel-default">
+                                  <div class="panel-heading"><span ng-class="{'text-black' : !form_errors.muscle_group_id, 'text-danger' : form_errors.muscle_group_id}">Muscle group: </span><span class="mandatory"> (*)</span></div>
+                                    <div class="panel-body  pre-scrollable equipments">
+                                        <div class="form-group-sm" >
+                                            <label class="col-md-8 control-label"  ng-repeat="musc in muscles"> 
+                                                    <input class="col-md-1" type="checkbox" value="{{musc.name}}" ng-model="muscles" ng-click="musclesSelected(musc.id)">
+                                                    <span class="col-md-9 text-left">{{musc.name}}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div> 
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="col-md-12">
+                                    <div class="panel panel-default">
+                                      <div class="panel-heading">Equipments:</div>
+                                        <div class="panel-body  pre-scrollable equipments">
+                                            <div class="form-group-sm" ng-init="getEquipments()">
+                                                <label class="col-md-8 control-label"  ng-repeat="equip in equipments"> 
+                                                    <input class="col-md-1" type="checkbox" value="{{equip.name}}" ng-model="equips" ng-click="equipmentsSelected(equip.id)" >
+                                                    <span class="col-md-9 text-left">{{equip.name}}</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                               <div class="col-md-12">
+                                 <div class="panel panel-default">
+                                      <div class="panel-heading">Subscription Options</div>
+                                      <div class="panel-body">
+                                            <div class="row form-group-sm">
+                                                <label class="col-sm-6 col-md-6 control-label"><span ng-class="{'text-black' : !form_errors.subscription_type_id, 'text-danger' : form_errors.subscription_type_id}">Subscription </br> type: </span><span class="mandatory"> (*)</span></label>
+                                              
+                                                <select class="form-controls" ng-init="getSubscriptionsGroup()" ng-model="selSubscriptionType" ng-options="subscrip.name for subscrip in subscriptions">
+                                                    <option value="">-- choose --</option>
+                                                </select>
+                                                
+                                            </div>
+
+                                            <div class="row form-group-sm">
+                                                <label class="col-sm-6 col-md-6 control-label"><span ng-class="{'text-black' : !form_errors.name, 'text-danger' : form_errors.name}">Cost: </span><span class="mandatory"> (*)</span></label>
+                                  
+                                                <input id="cost" type="text" ng-init="Exercise.cost = 0" ng-model="Exercise.cost" class="form-controls" ng-disabled="selSubscriptionType.id == 1" ng-required="selSubscriptionType.id != 1">
+                                                    
+                                                </div>
+                                        </div>
+                                 </div>
+                               </div>
+
+                            </div>
+                    </div>   
+                    <div class="form-group">
+                        <div class="buttons text-right">
+                            <button class="btn btn-sm btn-info" type="submit">SAVE</button>
+                            <button class="btn btn-sm btn-warning" >Assign To Workout</button>
+                            <button class="btn btn-sm btn-default" ng-click="cancelBtn('exercises.list')"  >CANCEL</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row col-md-12">
+                    <hr>
+                </div>
+
+                <div class="row buttons text-center">
+                    <span class="btn btn-success btn-sm fileUpload">
+                        <i class="fa fa-picture-o"></i> 
+                        <span> Add Images</span>
+                        <input images type="file" multiple class="upload" ng-model="files" changed>
+                    </span>
+                    <button class="btn btn-sm btn-success" ng-click="addVideoModal()" ><i class="fa fa-video-camera"></i>  Add Video</button>
+                </div>   
+
+                <div class="row"> 
+                    <div class="group-list">
+                        <section class="resources">
+                            <changed></changed>
+                        </section>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+</div>
+</div>

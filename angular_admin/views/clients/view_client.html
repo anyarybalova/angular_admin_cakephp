@@ -1,0 +1,72 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>User profile Information</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="index.main" >Home</a>
+            </li>
+            <li>
+                <a ui-sref="admin.users" >Users</a>
+            </li>
+            <li class="active">
+                <strong>User</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content" ng-controller="LawyerCtrl" ng-init="getUserDetail()">
+    <div class="row animated fadeInRight">
+        <div class="col-md-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>{{user.User.first_name}} {{user.User.last_name}}</h5>
+                </div>
+                <div>
+                    <div class="col-lg-12 ibox-content no-padding border-left-right">
+                        <div class="col-md-3 col-md-offset-1">
+                            <div ng-if="user.User.avatar">
+                                 <img alt="image_user" class="img-circle m-t-xs img-responsive " ng-src="{{url_user_img}}{{user.User.avatar}}">
+                            </div>
+                            <div ng-if="!user.User.avatar">
+                                <img alt="image_user" class="img-circle m-t-xs img-responsive" ng-src="{{url_user_img}}user.png">
+                            </div>
+                           
+                            <br/>
+
+                             <p>Phone: <strong>{{user.User.phone }} </strong></p>
+                             <p>Email: <strong>{{user.User.email }} </strong></p>
+                        </div>
+                        <divc class="col-lg-8">
+                           
+                        
+                        <p>Birthday: {{user.User.birth_date }}</p>
+                        <h5>Country: <strong>{{user.Country.name}}</strong></h5>
+                        <h5>City: <strong>{{user.User.city}}</strong></h5>
+              
+                        <div class="user-button">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <!--
+                                    <button type="button" class="btn btn-primary btn-sm btn-block"><i class="fa fa-envelope"></i> Send e-mail</button>
+                                    -->
+                                    <a ng-href="#/index/edit_user/{{user.User.id}}" type="button" class="btn btn-white btn-sm btn-block"><i class="fa fa-pencil"></i> Edit </a>
+                                
+                                    <button type="button" class="btn btn-white btn-sm btn-block" ng-click="modalDelete( user.User.id, user.User.first_name, user.User.last_name)" ><i class="fa fa-trash-o"></i> Delete </button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+
+
+

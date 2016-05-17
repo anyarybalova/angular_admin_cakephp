@@ -1,0 +1,112 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Exercise list</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="index.main">Home</a>
+            </li>
+            <li class="active">
+                <strong>Exercises</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+<div class="col-lg-12">
+<div class="wrapper wrapper-content animated fadeInUp">
+
+<div class="ibox">
+
+<div class="ibox-content">
+
+
+<div class="project-list" ng-controller="ExerciseCtrl" ng-init="getExerciseList()">
+
+    <div class="row m-b-sm m-t-sm">
+        <div id="filters_exercise" class="col-md-10 col-md-offset-1">
+            <div class="row form-group-sm">
+                <label class="col-sm-2 control-label">Name: </label>
+                <div class="col-lg-3 col-md-3 col-sm-8">
+                    <input type="text" ng-model="search.Exercise.name" class="form-controls" >
+                </div>
+            </div>
+
+            <!--
+           <div class="row form-group-sm">
+                <label class="col-sm-2 control-label">Muscle group: </label>
+                <div class="col-lg-3 col-md-3 col-sm-8">
+                    <select class="form-controls" ng-init="getMuscle_Array()" ng-model="search.MuscleGroup.name" ng-options="muscle for muscle in muscles_array">
+                </select>
+                </div>
+            </div>
+            -->
+            <div class="row form-group-sm">
+                <label class="col-sm-2 control-label">Subscription type: </label>
+                <div class="col-lg-3 col-md-3 col-sm-8">
+                    <select class="form-controls" ng-init="getSubscription_Array()" ng-model="search.Subscription_type.name" ng-options="subscrip for subscrip in subscrip_array">
+                </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-10 col-md-offset-1 ibox">
+       <!-- <a href="#" class="btn btn-primary btn-sm pull-left">Search</a> -->
+        <a ui-sref="exercises.new" class="btn btn-primary btn-sm pull-right">New exercise</a>
+    </div>
+    
+    <table id="exercises" class="table table-hover" ts-wrapper>
+        <thead>
+            <tr>
+              <th ts-criteria="Exercise.name|lowercase" ts-default>Name</th>
+              <th ts-criteria="MuscleGroup.name|lowercase">Muscle groups</th>
+              <th ts-criteria="Subscription_type.name|lowercase">Subscription type</th>
+              <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+         <tr ng-repeat="exercise in exercises | tablesort | filter:search | startFrom: paginationExercise.page * paginationExercise.perPage | limitTo: paginationExercise.perPage" ts-repeat >
+            <td class="project-title">
+                <p >{{exercise.Exercise.name}}</a>
+            </td>
+           
+            <td class="project-detail">
+                <ul>
+                    <li ng-repeat="group in exercise.ExerciseMuscleGroup">{{group.MuscleGroup.name}}</li>
+                </ul>
+            </td>
+
+            <td class="project-detail">
+                <p>{{exercise.Subscription_type.name}}</p>
+            
+            </td>
+           
+
+            <td class="project-actions">
+                
+                <a ui-sref="exercises.edit({exercise_id:exercise.Exercise.id})" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
+                <a data-toggle="modal" href="#" data-target="#modal" class="btn btn-white btn-sm" ng-click="deleteExerciseModal( exercise.Exercise.id, exercise.Exercise.name)" ><i class="fa fa-remove"></i> Delete </a>
+                <a href="" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> Assign To Training Plan </a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <li><a href="" ng-click="paginationExercise.prevPage()">&laquo;</a></li>
+          <li ng-repeat="n in [] | range: paginationExercise.numPages" ng-class="{active: n == paginationExercise.page}">
+          <a href="" ng-click="paginationExercise.toPageId(n)">{{n + 1}}</a>
+          </li>
+          <li><a href="" ng-click="paginationExercise.nextPage()">&raquo;</a></li>
+    </ul>
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>

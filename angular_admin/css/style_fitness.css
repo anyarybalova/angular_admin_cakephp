@@ -1,0 +1,129 @@
+::-webkit-scrollbar {
+	-webkit-appearance: none;
+	width: 7px;
+}
+::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	background-color: rgba(0,0,0,.5);
+	-webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+
+.buttons button, .buttons span, .buttons a{
+	width: 130px;
+	margin-right: 10px;
+}
+
+
+/*  CLIENTS */
+#addClient label{ font-size: 95%;}
+#addClient .row{ padding-bottom: 12px;}
+#addClient #phone_code{
+	margin-right: 10px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+#addClient #phone{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+#addClient input[type="date"]{ height: 24px; padding-right: 10px;}
+#addClient select{ width: 160px;}
+#addClient input[type="file"]{ width: 130px;}
+
+
+
+
+/* Exercise */
+#filters_exercise .row{ margin-bottom: 6px;}
+#filters_exercise select{ width: 160px;}
+
+#addExercise .row{ padding-bottom: 12px;  margin-right: 0px;}
+#addExercise input, #addExercise textarea{ padding-left: 0px;}
+#addExercise .chosen-select{ margin-left: 100px;}
+#cost{ width: 50px;}
+#addExercise .equipments{
+	height: 120px;
+	margin-left: 20px;
+	padding: 0px;
+	margin-top: 15px;
+}
+.equipment label{ padding-left: 0px;}
+.equipments{ overflow-y: scroll;}
+#addExercise .buttons{ margin-top: 30px; margin-bottom: 20px;}
+#addExercise .objetive{ margin-bottom: 20px;}
+
+.mandatory{ color: red; font-size: x-small;}
+
+#addClient #email{ width: 200px;}
+
+.fileUpload { position: relative; overflow: hidden; /* margin: 10px;*/}
+
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+#addExercise .panel-body{ margin-top: 0px;}
+#table_resourses td{vertical-align:middle}
+
+#modal_addVideo .row{ margin-bottom: 15px; }
+#modal_addVideo input{padding-left: 0px; }
+
+/* TRAINNING */
+
+#addTrainning .row{ margin-bottom: 10px; }
+
+#addTrainning input, #addTrainning textarea{ padding-left: 3px;}
+
+.mobile-photo{
+	background: #EFEFEF;
+	height: 100px;
+	margin-top: 20px;
+}
+
+.text_explication{ text-align: justify;}
+
+.info_btn{ padding-top: 30px;}
+
+
+.added_img{ padding-top: 7px; margin-left: 0px;}
+
+#addTrainning .fileUpload{ margin-top: 20px;}
+
+.table_workouts{ margin-top: 50px;}
+
+#addTrainning .tooltip-inner { width: 200px !important;}
+
+#addTrainning .panel-body{ padding: 5px 0 0 0 !important;}
+
+
+/* WORKOUT */
+.exercise_item{
+    color: inherit;
+    padding: 5px 5px 5px 5px;
+    border-color: #e7eaec;
+    border-style: solid solid none;
+    border-width: 1px 0px;
+}
+
+.exercise_item div:active{ cursor: move;}
+
+#addWorkout input{ margin-bottom: 15px;}
+
+#addWorkout .checkbox label{ padding-left: 0px !important; padding-top: 15px;}
+
+#addWorkout .connectPanels div:active{ background-color: #E6EBFF;}
+
+#addWorkout .list-group{ margin-bottom: 0px;}
+
+.div_active{ background-color: #E6EBFF;}
+
+.img_carrusel{ margin-bottom: 40px;}

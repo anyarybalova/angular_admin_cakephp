@@ -1,0 +1,170 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Add new client</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="index.main">Home</a>
+            </li>
+            <li>
+                <a ui-sref="clients.list" >Clients</a>
+            </li>
+            <li class="active">
+                <strong>New client</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+<div class="row">
+    <div class="col-lg-12 col-md-8 col-sm-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h2><strong>New Client</strong></h2>
+
+               
+            </div>
+            <div class="ibox-content">
+                <form class="form-horizontal" id="addClient" ng-controller="ClientCtrl" ng-submit="submitAddClient()" ng-init="initForm()" >
+
+                    <div class="col-md-2">
+                        <img ng-show="!photo_url" src="img/User.png" alt="user" width="100px"/>
+                        <img ng-show="photo_url" ng-src="{{photo_url}}" alt="user" width="100px"/>
+
+                        <input type="file"  ng-model="new_file" file >
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="col-md-12">
+
+                            <div class="row form-group-sm">
+                                <label class="col-md-5 control-label"><span ng-class="{'text-black' : !form_errors.first_name, 'text-danger' : form_errors.first_name}">First Name </span><span class="mandatory"> (*)</span></label>
+                                <div class="col-lg-7 col-md-7 col-sm-6">
+                                    <input type="text" ng-model="Client.first_name" class="form-controls" required>
+                                </div>
+                            </div>
+
+                            <div class="row form-group-sm">
+                                <label class="col-md-5 control-label">
+                                    <span ng-class="{'text-black' : !form_errors.email, 'text-danger' : form_errors.email}">Email</span><span class="mandatory"> (*)</span>
+                                </label>
+                                <div class="col-lg-7 col-md-7 col-sm-7">
+                                    <input type="email" ng-model="Client.email" class="form-controls" required >
+                                </div>
+                            </div>
+
+                             <div class="row form-group-sm">
+                                <label class="col-md-5 control-label">
+                                    <span ng-class="{'text-black' : !form_errors.birth_date, 'text-danger' : form_errors.birth_date}">
+                                        Birthday <span class="mandatory"> (*)</span> 
+                                    </span>
+                                </label>
+                                <div class="col-lg-7 col-md-7 col-sm-7">
+                                    <input type="date" class="form-controls" date ng-model="Client.birth_date" view="date" required>
+                                    <!--<span class="input-group-addon"><i class="fa fa-calendar"></i></span>-->
+                                </div>
+                            </div>
+
+                            <div class="row form-group-sm">
+                                <label class="col-md-5 control-label">Country <span class="mandatory"> (*)</span></label>
+                                <div class="col-lg-7 col-md-7 col-sm-7">
+                                    <select class="form-controls" ng-init="getCountryList()" ng-model="selCountry" ng-options="country.name for country in countries"  required>
+                                    <option value="">-- choose country --</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                          
+                            <div class="row form-group-sm">
+                                <label class="col-md-5 control-label">City <span class="mandatory"> (*)</span></label>
+                                <div class="col-lg-7 col-md-7 col-sm-6">
+                                    <span ng-show="form_errors.city" class="text-danger">{{form_errors['city'][0]}}</span>
+                                    <input type="text" class="form-controls" ng-model="Client.city"  required>
+                                </div>
+                            </div> 
+                   
+            
+                            <div class="row form-group-sm">
+                                <label class="col-md-5 control-label">Phone <span class="mandatory"> (*)</span></label>
+                                <div class="col-lg-7 col-md-7 col-sm-7">
+                                    <span ng-show="form_errors.phone" class="text-danger">{{form_errors['phone'][0]}}</span>
+                                        <input type="text" id="phone_code" ng-model="Client.phone_code" class="form-controls col-lg-2 col-md-2" >
+                                        <input type="text" id="phone" ng-model="Client.phone" class="form-controls col-lg-9 col-md-9" required >
+                                </div>
+                            </div>
+                           
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row col-md-12">
+                            <div class="row form-group-sm">
+                                <label class="col-md-5 control-label">
+                                    <span ng-class="{'text-black' : !form_errors.last_name, 'text-danger' : form_errors.last_name}">Last Name <span class="mandatory"> (*)</span></span>
+                                </label>
+                                <div class="col-lg-7 col-md-7 col-sm-7">
+                                    <input type="text" ng-model="Client.last_name" class="form-controls" required >
+                                </div>
+                            </div>
+
+                            <div class="row form-group-sm">
+                                <label class="col-md-5 control-label">
+                                    <span ng-class="{'text-black' : !form_errors.sex, 'text-danger' : form_errors.sex}">Sex</span><span class="mandatory"> (*)</span>
+                                </label>
+                                <div class="col-lg-7 col-md-7 col-sm-7">
+                                    
+                                    <select class="form-controls" ng-init="" ng-model="Client.sex"  required>
+                                    <option value="">-- sex --</option>
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
+                                    </select>
+                                </div>
+                            </div> 
+                           
+                           <div class="row form-group-sm">
+                                <label class="col-md-5 control-label">Metric <span class="mandatory"> (*)</span></label>
+                                <div class="col-lg-7 col-md-7 col-sm-6">
+                                    <select class="form-controls" ng-model="Client.metric" required>
+                                    <option value="">-- choose metric --</option>
+                                    <option value="M">Metric</option>
+                                    <option value="I">Imperial</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>  
+                                <!--
+                                <div class="row col-md-10">
+                                    <div class="form-group-sm">
+                                        <label class="col-sm-2 control-label"><span ng-class="{'text-black' : !form_errors.password, 'text-danger' : form_errors.password}">Password</span></label>
+                                        <div class="col-lg-3 col-md-3 col-sm-6">
+                                            <input type="paseword" ng-model="Client.password" class="form-controls"  required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group-sm">
+                                        <label class="col-sm-2 md-offset-2 control-label">
+                                            <span ng-class="{'text-black' : !form_errors.pass_2, 'text-danger' : form_errors.pass_2}">Confirm password</span>
+                                        </label>
+                                        <div class="col-lg-3 col-md-4 col-sm-6">
+                                            <input type="password" ng-model="Client.pass_2" class="form-controls" required >
+                                        </div>
+                                    </div>
+                                </div>
+                                -->
+
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button class="btn btn-sm btn-white" ng-click="cancelBtn('clients.list')" >Cancel</button>
+                            <button class="btn btn-sm btn-primary" type="submit">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    </div>
+</div>
+</div>
+</div>

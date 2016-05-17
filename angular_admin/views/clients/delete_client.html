@@ -1,0 +1,17 @@
+<div class="inmodal">
+    <div>
+        <div class="modal-header">
+            <i class="fa fa-trash-o modal-icon"></i>
+            <h4 class="modal-title">Delete user</h4>
+        </div>
+        <div class="modal-body">
+            <p>Are you sure that you want to permanently delete record of "<strong>{{ name }}</strong>" from basedate?</p>
+        </div>
+        <div class="modal-footer">
+            
+            <button type="button" class="btn btn-primary" ng-click="ok('deleteClient', client_id)">Delete</button>
+            <button type="button" class="btn btn-white" ng-click="cancel()">Close</button>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,162 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Add new Workout session</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="index.main">Home</a>
+            </li>
+            <li>
+                <a ui-sref="exercises.list" >Trainning plans</a>
+            </li>
+            <li class="active">
+                <strong>Add</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+<div id="addTrainnig" class="row" ng-controller="TrainningCtrl">
+    <div class="col-lg-12 col-md-8 col-sm-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h2><strong>New Workout</strong></h2>
+            </div>
+            <div class="ibox-content">
+                <form class="form-horizontal" id="addWorkout" ng-submit="submitAddWorkout()" >                       
+                    <div class="row">                   
+                        <div class="col-md-7">     
+                                <div class="row form-group-sm">
+                                    <label class="col-md-3 control-label"><span ng-class="{'text-black' : !form_errors.name, 'text-danger' : form_errors.name}">Session Name:</span><span class="mandatory"> (*)</span></label>
+                              
+                                    <input class="col-md-8 form-controls" type="text" ng-model="Workout.name" required>
+                                    
+                                </div>
+                            
+                        
+                            
+                                <div class="row form-group-sm">
+                                    <label class="col-md-3 control-label"><span ng-class="{'text-black' : !form_errors.description, 'text-danger' : form_errors.description}">Description:</span><span class="mandatory"> (*)</span></label>
+                             
+                                    <textarea type="text" rows="2" ng-model="Workout.description" class="form-controls col-md-8" required></textarea>
+                                </div> 
+
+                                <div class="row form-group-sm">
+                                    <label class="col-md-8 col-md-offset-3 control-label">
+                                        <input class="col-md-1" type="checkbox" value="mobile_market"  ng-model="Exercise.availible_mobile_market" checked >
+                                        <span class="col-md-11 text-left">Availible for Mobile Market</span>
+                                    </label>
+                                </div> 
+                        </div>
+                        
+                        <div class="col-md-5">
+                            <div class="col-md-12" >
+                             <div class="panel panel-default">
+                                  <div class="panel-heading">Subscription Options</div>
+                                  <div class="panel-body">
+                                        <div class="row form-group-sm">
+                                            <label class="col-md-5 control-label"><span ng-class="{'text-black' : !form_errors.subscription_type_id, 'text-danger' : form_errors.subscription_type_id}">Subscription type</span><span class="mandatory"> (*)</span></label>
+                                          
+                                            <select class="form-controls" ng-init="getSubscriptionsGroup()" ng-model="selSubscriptionType" ng-options="subscrip.name for subscrip in subscriptions">
+                                                <option value="">-- choose --</option>
+                                            </select>
+                                            
+                                        </div>
+
+                                        <div class="row form-group-sm">
+                                            <label class="col-md-5 control-label"><span ng-class="{'text-black' : !form_errors.name, 'text-danger' : form_errors.name}">Cost </span><span class="mandatory"> (*)</span></label>
+                              
+                                            <input id="cost" type="text" ng-init="Exercise.cost = 0" ng-model="Exercise.cost" class="form-controls" ng-disabled="selSubscriptionType.id == 1" ng-required="selSubscriptionType.id != 1">
+                                                
+                                        </div>
+                                        <div class="col-md-8 col-md-offset-4">
+                                            <label><input type="radio" name="assign_exercise" value="select" checked /> Let me choose the Exercise</label>
+                                            <label><input type="radio" name="assign_exercise" value="all" /> Apply to All Exercises</label>
+                                        </div>
+                                    </div>
+                             </div>
+                            </div>
+                        </div>
+
+                     
+                        <div class="row col-md-5" >
+                            <div class="col-md-12">
+                                 <div class="col-md-9">
+                                    <button class="btn btn-sm btn-success" >Add Exercises</button>
+                                </div>
+                               
+                                <div class="col-md-3" dropdown>
+                                    <button class="btn btn-white dropdown-toggle" dropdown-toggle type="button">Action <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="">Superset</a></li>
+                                        <li><a href="">Unsuperset</a></li>
+                                        <li><a href="">Delete</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                             
+                            <div class="animated fadeInRight" ng-controller="draggablePanels">
+                                <div ng-controller="ExerciseCtrl" ng-init="getExerciseList();" id="sortable-view">
+                                    <div  ui-sortable="sortableOptions" ng-model="exercises">
+                                        <div class="col-md-12 connectPanels"  ng-repeat="exercise in exercises">
+                                            <div class="exercise_item col-md-12" ng-click="selectedDiv($event, exercise.Exercise.id, exercise.Exercise.name, exercise.Subscription_type.name)" >
+                                                
+
+                                                <div class="col-md-3">
+                                                        <img class="image_exercise" src="{{url_exercise_img}}default.jpg" alt="exercise_default_img" width="60px" />
+                                                </div>
+
+                                                <div class="col-md-7">
+                                                    <h2>{{exercise.Exercise.name}}</br>
+                                                    <small>Type: {{exercise.Subscription_type.name}}</small>
+                                                    </h2>
+                                                </div>
+
+                                                <div class="col-md-1">
+                                                    <div class="checkbox">
+                                                        <label> <input icheck type="checkbox" ng-model="wout_exercises"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        
+                        </div>
+                     
+
+                        <div class="row col-md-6">
+                             <div class="col-md-12 text-center">
+                                 <img class="img_carrusel" src="{{url_exercise_img}}default.jpg" alt="exercise_default_img" width="100px" />
+                            </div>
+
+                            <div class="row col-md-12">
+                                <div class="col-md-6 col-md-offset-1">
+                                    <h3><strong ng-bind="exercise_name"></strong></h3>
+                                    <p ng-bind="exercise_type"></p>
+                                </div>
+                                <div class=" buttons col-md-4">
+                                    <button class="btn btn-sm btn-success">New set</button>
+                                </div>
+
+                            </div>
+
+                            <div class="row col-md-12">
+                                <hr>
+                            </div>
+                          
+                        </div>
+                </form>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+$('.dropdown-toggle').dropdown()
+</script>

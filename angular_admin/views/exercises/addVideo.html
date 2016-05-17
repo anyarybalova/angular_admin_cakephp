@@ -1,0 +1,28 @@
+<div class="inmodal">
+    <div class="modal-body" id="modal_addVideo">
+    	<div class="row col-md-12">
+        	<h3>Add video</h3>
+	       
+	            <div class="row input-group-sm">
+	                <label class="col-md-3 control-label">Name:</label>
+	                <input class="col-md-5 form-controls" type="text" ng-model="video_name">
+	                
+	            </div>
+	       
+	            <div class="row input-group-sm">
+	                <label class="col-md-3 control-label">Url:</label>
+	                <input class="col-md-8 form-controls" type="text" ng-model="video_url" >
+	                
+	            </div>
+	      
+	     </div>   
+    </div>
+
+    <div class="modal-footer">
+    	<div class="row col-md-12">
+	        <a href="#" type="button" class="btn btn-white" ng-click="addVideo(video_name,video_url);cancel()" >Yes</a>
+	        <a href="#" type="button" class="btn btn-white" ng-click="cancel()">No</a>
+	    </div>
+	</div>
+</div>
+

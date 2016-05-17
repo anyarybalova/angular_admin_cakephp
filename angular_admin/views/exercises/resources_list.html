@@ -1,0 +1,30 @@
+<div>
+    <div class="container col-md-7 col-md-offset-1">
+        <div class="animated fadeInRight" ng-controller="draggablePanels">
+	        <div id="sortable-view">
+	        	<table id="table_resourses" class="table table-striped">
+		            <div ui-sortable="sortableOptions" ng-model="resourses">
+		                <tr class="connectPanels"  ng-repeat="rec in resources">
+	                        <td class="col-md-3 text-center">              
+                    				<img ng-src="{{rec.src}}" alt="user" width="100px"/>
+	                        </td>
+
+	                        <td class="col-md-6">
+	                            <textarea rows="5" cols="30" placeholder="Summary"></textarea>
+	                        </td>
+
+	                        <td class="col-md-3 text-center">
+	                        <!--<a ng-href="{{rec}}" class="btn btn-sm btn-warning"><i class="fa fa-download"></i> Download </a> -->
+	                        	 <button class="btn btn-danger btn-circle btn-outline" type="button" ng-click="removeResource($event, rec.name)"><i class="fa fa-trash-o"></i>
+                    				</button>
+	                            <!--<div class="checkbox">
+	                                <label> <input icheck type="checkbox" ng-model="wout_exercises"></label>
+	                            </div> -->
+	                        </td>
+		                </tr>
+		            </div>
+		        </table>
+	        </div>
+	    </div>
+    </div>
+</div>
